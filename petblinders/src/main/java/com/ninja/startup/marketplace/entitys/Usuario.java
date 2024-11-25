@@ -1,17 +1,39 @@
 package com.ninja.startup.marketplace.entitys;
 
 import lombok.Data;
-import org.springframework.boot.autoconfigure.domain.EntityScan;
+import lombok.ToString;
+
+import java.util.List;
+
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
+import org.springframework.data.mongodb.core.mapping.DBRef;
+import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field;
 
 @Data
-@EntityScan
+@ToString(exclude = "senha")       // senha não pode ser exibida no console log
+@Document(collection = "usuarios")
 
 public class Usuario {
-    private Long id;
+    @Id
+    private String id;
+
+    @Field("nome_completo")
     private String nome;
+    
+    @Field("email")
+    @Indexed(unique = true)
     private String email;
+
     private String senha;
+
+    @Indexed(unique = true)
+    private String telefone;
+
     private boolean vendedor;
 
-    private Pedido pedido;
+    @DBRef
+    @Field("pedidos")
+    private List<Pedido> pedidos;
 }
