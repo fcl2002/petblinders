@@ -52,15 +52,8 @@ public class PetblindersApplication implements CommandLineRunner {
     }
 
     public void run(String... args) throws Exception {
-
-		// Clean up any previous data
-		usuarioRepository.deleteAll(); // Doesn't delete the collection
-		
-		System.out.println("-------------CREATE USERS-------------------------------\n");
-		
 		createData();
     }
-
 
 	void createData() {
 		System.out.println("Data creation started...");

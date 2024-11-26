@@ -15,11 +15,11 @@ public class Item {
     private String nome;
     
     @Field
-    @Min(message = "O valor não pode ser negativo", value = 0)
+    @Min(value = 0, message = "O valor não pode ser negativo")
     private double valor;
     
     @Field
-    @Min(message = "A quantidade não pode ser negativo", value = 0)
+    @Min(value = 0, message = "A quantidade não pode ser negativo")
     private int quantidade;
     
     private String descricao;
