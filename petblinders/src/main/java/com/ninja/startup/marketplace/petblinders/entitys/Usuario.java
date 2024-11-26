@@ -1,8 +1,5 @@
 package com.ninja.startup.marketplace.petblinders.entitys;
 
-import lombok.Data;
-import lombok.ToString;
-
 import java.util.List;
 
 import org.springframework.data.annotation.Id;
@@ -11,10 +8,7 @@ import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
-@Data
-@ToString(exclude = "senha")       // senha não pode ser exibida no console log
 @Document(collection = "usuarios")
-
 public class Usuario {
     @Id
     private String id;
@@ -31,9 +25,76 @@ public class Usuario {
     @Indexed(unique = true)
     private String telefone;
 
-    private boolean vendedor;
+    private Boolean vendedor;
 
     @DBRef
     @Field("pedidos")
     private List<Pedido> pedidos;
+
+    public Usuario(String id, String nome, String email, String senha, String telefone, Boolean vendedor, List<Pedido> pedidos) {
+        this.id = id;
+        this.nome = nome;
+        this.email = email;
+        this.senha = senha;
+        this.telefone = telefone;
+        this.vendedor = vendedor;
+        this.pedidos = pedidos;
+    }
+
+    // Getters and Setters
+    public String getId() {
+        return id;
+    }
+    
+    public void setId(String id) {
+        this.id = id;
+    }
+    
+    public String getNome() {
+        return nome;
+    }
+    
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+    
+    public String getEmail() {
+        return email;
+    }
+    
+    public void setEmail(String email) {
+        this.email = email;
+    }
+    
+    public String getSenha() {
+        return senha;
+    }
+    
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
+    
+    public String getTelefone() {
+        return telefone;
+    }
+    
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
+    }
+    
+    public Boolean getVendedor() {
+        return vendedor;
+    }
+    
+    public void setVendedor(Boolean vendedor) {
+        this.vendedor = vendedor;
+    }
+    
+    public List<Pedido> getPedidos() {
+        return pedidos;
+    }
+    
+    public void setPedidos(List<Pedido> pedidos) {
+        this.pedidos = pedidos;
+    }
 }

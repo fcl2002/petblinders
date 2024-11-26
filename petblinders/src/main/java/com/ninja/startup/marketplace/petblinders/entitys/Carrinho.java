@@ -1,7 +1,5 @@
 package com.ninja.startup.marketplace.petblinders.entitys;
 
-import lombok.Data;
-
 import java.util.List;
 
 import org.springframework.data.annotation.Id;
@@ -10,9 +8,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import jakarta.validation.constraints.Min;
 
-@Data
 @Document(collection = "carrinhos")
-
 public class Carrinho {
     @Id
     private String id;
@@ -23,7 +19,38 @@ public class Carrinho {
     @DBRef
     private List<Item> itens;
 
+    public Carrinho(String id, double valorTotal, List<Item> itens) {
+        this.id = id;
+        this.valorTotal = valorTotal;
+        this.itens = itens;
+    }
+
     public void calcularTotal() {
         // atualizar o valor da variável
+    }
+
+    // Getters e Setters
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public double getValorTotal() {
+        return valorTotal;
+    }
+
+    public void setValorTotal(double valorTotal) {
+        this.valorTotal = valorTotal;
+    }
+
+    public List<Item> getItens() {
+        return itens;
+    }
+
+    public void setItens(List<Item> itens) {
+        this.itens = itens;
     }
 }
