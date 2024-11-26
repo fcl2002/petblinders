@@ -1,4 +1,4 @@
-package com.ninja.startup.marketplace.entitys;
+package com.ninja.startup.marketplace.petblinders.entitys;
 
 import lombok.Data;
 import org.springframework.data.annotation.CreatedDate;

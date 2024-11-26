@@ -1,14 +1,14 @@
-package com.ninja.startup.marketplace.entitys;
+package com.ninja.startup.marketplace.petblinders.entitys;
 
 import java.util.List;
 
 import lombok.Data;
 
-import org.springframework.boot.autoconfigure.domain.EntityScan;
-
+import org.springframework.data.mongodb.core.mapping.Document;
 
 @Data
-@EntityScan
+@Document(collection = "itens")
+
 public class Item {
     private Long id;
     private String nome;
