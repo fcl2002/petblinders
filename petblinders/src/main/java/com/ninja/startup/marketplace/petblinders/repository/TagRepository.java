@@ -6,6 +6,6 @@ import com.ninja.startup.marketplace.petblinders.entitys.Tag;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface TagRepository extends MongoRepository<Tag, Long>{
+public interface TagRepository extends MongoRepository<Tag, String>{
 
 }

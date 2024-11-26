@@ -4,13 +4,15 @@ import java.util.List;
 
 import lombok.Data;
 
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Data
 @Document(collection = "itens")
 
 public class Item {
-    private Long id;
+	@Id
+    private String id;
     private String nome;
     private double valor;
     private int quantidade;
