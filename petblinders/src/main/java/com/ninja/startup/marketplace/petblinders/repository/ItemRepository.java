@@ -6,6 +6,6 @@ import com.ninja.startup.marketplace.petblinders.entitys.Item;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface ItemRepository extends MongoRepository<Item, Long>{
+public interface ItemRepository extends MongoRepository<Item, String>{
 	
 }
