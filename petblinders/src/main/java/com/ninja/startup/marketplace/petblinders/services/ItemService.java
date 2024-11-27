@@ -6,8 +6,8 @@ import java.util.NoSuchElementException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.ninja.startup.marketplace.petblinders.entitys.Item;
-import com.ninja.startup.marketplace.petblinders.entitys.Tag;
+import com.ninja.startup.marketplace.petblinders.entity.Item;
+import com.ninja.startup.marketplace.petblinders.entity.Tag;
 import com.ninja.startup.marketplace.petblinders.repository.ItemRepository;
 import com.ninja.startup.marketplace.petblinders.repository.TagRepository;
 

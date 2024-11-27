@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.ninja.startup.marketplace.petblinders.entitys.Item;
+import com.ninja.startup.marketplace.petblinders.entity.Item;
 import com.ninja.startup.marketplace.petblinders.services.ItemService;
 
 @RestController
