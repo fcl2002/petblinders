@@ -16,7 +16,7 @@ import com.ninja.startup.marketplace.petblinders.entity.Usuario;
 import com.ninja.startup.marketplace.petblinders.service.UsuarioService;
 
 @RestController
-@RequestMapping("/api/usuarios")
+@RequestMapping("/api/usuario")
 public class UsuarioController {
     
     @Autowired
@@ -26,21 +26,21 @@ public class UsuarioController {
         this.usuarioService = usuarioService;
     }
 
-    @PostMapping
-    public Usuario criarUsuario(@RequestBody Usuario usuario) {
-        return usuarioService.createUser(usuario);
-    }
-
     @GetMapping("/all")
     public List<Usuario> listarUsuarios() {
         List<Usuario> usuarios = usuarioService.getAll();
         System.out.println(usuarios);
         return usuarios;
     }
-
+    
     @GetMapping("/{id}")
     public Usuario buscarUsuario(@PathVariable String id) {
         return usuarioService.getUserById(id);
+    }
+
+    @PostMapping
+    public Usuario criarUsuario(@RequestBody Usuario usuario) {
+        return usuarioService.criarUsuario(usuario);
     }
 
     @PutMapping("/{id}")

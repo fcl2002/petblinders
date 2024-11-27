@@ -6,7 +6,9 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.ninja.startup.marketplace.petblinders.entity.Carrinho;
 import com.ninja.startup.marketplace.petblinders.entity.Usuario;
+import com.ninja.startup.marketplace.petblinders.repository.CarrinhoRepository;
 import com.ninja.startup.marketplace.petblinders.repository.UsuarioRepository;
 
 @Service
@@ -15,8 +17,12 @@ public class UsuarioService {
     @Autowired
     private final UsuarioRepository usuarioRepository;
 
-    public UsuarioService(UsuarioRepository usuarioRepository) {
+    @Autowired
+    private final CarrinhoRepository carrinhoRepository;
+
+    public UsuarioService(UsuarioRepository usuarioRepository, CarrinhoRepository carrinhoRepository) {
         this.usuarioRepository = usuarioRepository;
+        this.carrinhoRepository = carrinhoRepository;
     }
 
     public List<Usuario> getAll() {
@@ -28,11 +34,20 @@ public class UsuarioService {
                 .orElseThrow(() -> new IllegalArgumentException("Usuário não encontrado com o ID: " + id));
     }
 
-    public Usuario createUser(Usuario usuario) {
-        if (usuarioRepository.findById(usuario.getEmail()).isPresent())
+    public Usuario criarUsuario(Usuario usuario) {
+        if (usuarioRepository.findByEmail(usuario.getEmail()).isPresent())
             throw new IllegalArgumentException("Email já registrado - " + usuario.getEmail());
+        
+        Usuario newUser = usuarioRepository.save(usuario);
+        
+        Carrinho c = new Carrinho();
+        c.setItens(List.of());
+        c.setValorTotal(0.0);
+        Carrinho carrinhoSalvo = carrinhoRepository.save(c);
 
-        return usuarioRepository.save(usuario);
+        newUser.setCarrinho(carrinhoSalvo);
+
+        return usuarioRepository.save(newUser);
     }
 
     public Usuario updateUser(String id, Usuario usuarioAtualizado) {
