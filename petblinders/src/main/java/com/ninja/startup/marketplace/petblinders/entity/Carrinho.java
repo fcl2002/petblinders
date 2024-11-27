@@ -30,7 +30,9 @@ public class Carrinho {
     }
 
     public void calcularTotal() {
-        // atualizar o valor da variável
+        this.valorTotal = itens.stream()
+                            .mapToDouble(item -> item.getValor() * item.getQuantidade())
+                            .sum();
     }
 
     // Getters e Setters

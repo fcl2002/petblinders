@@ -83,9 +83,12 @@ public class UsuarioService {
     }
 
     public void deletarUsuario(String id) {
-        if (usuarioRepository.existsById(id))
-            usuarioRepository.deleteById(id);
-        else
-            throw new RuntimeException("Usuário não encontrado com o ID: " + id);
+        Usuario usuario = usuarioRepository.findById(id)
+                        .orElseThrow(() -> new RuntimeException("Usuário não encontrado com o ID: " + id));
+
+        if (usuario.getCarrinho() != null)
+            carrinhoRepository.deleteById(usuario.getCarrinho().getId());
+
+        usuarioRepository.deleteById(id);
     }
 }
