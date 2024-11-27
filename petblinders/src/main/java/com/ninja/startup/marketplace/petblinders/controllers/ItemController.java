@@ -51,4 +51,9 @@ public class ItemController {
 	public void deleteItem(@PathVariable String id) {
 		itemService.deleteItem(id);
 	}
+	
+	@PutMapping(value = "/{idItem}/tags/{idTag}")
+	public void addTag(@PathVariable String idTag, @PathVariable String idItem) {
+		itemService.addTag(idTag, idItem);
+	}
 }

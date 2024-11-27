@@ -7,13 +7,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ninja.startup.marketplace.petblinders.entitys.Item;
+import com.ninja.startup.marketplace.petblinders.entitys.Tag;
 import com.ninja.startup.marketplace.petblinders.repository.ItemRepository;
+import com.ninja.startup.marketplace.petblinders.repository.TagRepository;
 
 
 @Service
 public class ItemService {
 	@Autowired
 	ItemRepository itemRepository;
+	@Autowired
+	TagRepository tagRepository;
 	
 	public List<Item> findAll(){
 		return itemRepository.findAll();
@@ -40,6 +44,16 @@ public class ItemService {
 		
 		if(request.getDescricao() != null)
 			item.setDescricao(request.getDescricao());
+		
+		return itemRepository.save(item);
+	}
+	
+	public Item addTag(String idTag, String idItem) {
+		Item item = findById(idItem);
+		Tag tag = tagRepository.findById(idTag)
+				.orElseThrow(()-> new NoSuchElementException("Tag not found with id: "+idTag));
+		item.getTags().add(tag);
+		tag.getItens().add(item);
 		
 		return itemRepository.save(item);
 	}
