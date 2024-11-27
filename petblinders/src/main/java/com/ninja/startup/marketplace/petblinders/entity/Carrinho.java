@@ -1,4 +1,4 @@
-package com.ninja.startup.marketplace.petblinders.entitys;
+package com.ninja.startup.marketplace.petblinders.entity;
 
 import java.util.List;
 

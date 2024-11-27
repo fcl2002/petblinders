@@ -1,4 +1,6 @@
-package com.ninja.startup.marketplace.petblinders.entitys;
+package com.ninja.startup.marketplace.petblinders.entity;
+
+import java.util.List;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
@@ -25,15 +27,15 @@ public class Item {
     private String descricao;
 
     @DBRef
-    private Tag tag;
+    private List<Tag> tags;
 
-    public Item(String id, String nome, double valor, int quantidade, String descricao, Tag tag) {
+    public Item(String id, String nome, double valor, int quantidade, String descricao, List<Tag> tags) {
         this.id = id;
         this.nome = nome;
         this.valor = valor;
         this.quantidade = quantidade;
         this.descricao = descricao;
-        this.tag = tag;
+        this.tags = tags;
     }
 
     // Getters e Setters
@@ -77,11 +79,11 @@ public class Item {
         this.descricao = descricao;
     }
 
-    public Tag getTag() {
-        return tag;
+    public List<Tag> getTags() {
+        return tags;
     }
-
-    public void setTag(Tag tag) {
-        this.tag = tag;
+    
+    public void setTags(List<Tag> tags) {
+        this.tags = tags;
     }
 }

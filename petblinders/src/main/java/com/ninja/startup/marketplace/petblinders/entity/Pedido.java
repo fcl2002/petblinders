@@ -1,4 +1,4 @@
-package com.ninja.startup.marketplace.petblinders.entitys;
+package com.ninja.startup.marketplace.petblinders.entity;
 
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.Id;

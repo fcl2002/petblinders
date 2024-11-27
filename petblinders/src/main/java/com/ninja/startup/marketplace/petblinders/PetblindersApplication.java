@@ -10,12 +10,12 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 
-import com.ninja.startup.marketplace.petblinders.entitys.Carrinho;
-import com.ninja.startup.marketplace.petblinders.entitys.Item;
-import com.ninja.startup.marketplace.petblinders.entitys.Pedido;
-import com.ninja.startup.marketplace.petblinders.entitys.StatusPedido;
-import com.ninja.startup.marketplace.petblinders.entitys.Tag;
-import com.ninja.startup.marketplace.petblinders.entitys.Usuario;
+import com.ninja.startup.marketplace.petblinders.entity.Carrinho;
+import com.ninja.startup.marketplace.petblinders.entity.Item;
+import com.ninja.startup.marketplace.petblinders.entity.Pedido;
+import com.ninja.startup.marketplace.petblinders.entity.StatusPedido;
+import com.ninja.startup.marketplace.petblinders.entity.Tag;
+import com.ninja.startup.marketplace.petblinders.entity.Usuario;
 import com.ninja.startup.marketplace.petblinders.repository.CarrinhoRepository;
 import com.ninja.startup.marketplace.petblinders.repository.ItemRepository;
 import com.ninja.startup.marketplace.petblinders.repository.PedidoRepository;
@@ -65,8 +65,8 @@ public class PetblindersApplication implements CommandLineRunner {
         tagRepository.save(tag2);
 
         // // Criando itens
-        Item item1 = new Item("1", "Smartphone", 1999.99, 10, "Smartphone de última geração", tag1);
-        Item item2 = new Item("2", "Camiseta", 59.99, 50, "Camiseta confortável", tag2);
+        Item item1 = new Item("1", "Smartphone", 1999.99, 10, "Smartphone de última geração", List.of(tag1));
+        Item item2 = new Item("2", "Camiseta", 59.99, 50, "Camiseta confortável", List.of(tag1, tag2));
         itemRepository.save(item1);
         itemRepository.save(item2);
 
