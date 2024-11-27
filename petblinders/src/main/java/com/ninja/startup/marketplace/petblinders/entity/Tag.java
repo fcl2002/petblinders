@@ -26,7 +26,6 @@ public class Tag {
         return id;
     }
 
-
     public List<Item> getItens() {
 		return itens;
 	}
@@ -34,8 +33,6 @@ public class Tag {
 	public void setItens(List<Item> itens) {
 		this.itens = itens;
 	}
-
-	
 	
     public void setId(String id) {
         this.id = id;
@@ -48,14 +45,5 @@ public class Tag {
     public void setNome(String nome) {
         this.nome = nome;
     }
-
-    public List<Item> getItens() {
-        return itens;
-    }
-
-    public void setItens(List<Item> itens) {
-        this.itens = itens;
-    }
-
 }
 
