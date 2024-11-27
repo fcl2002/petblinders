@@ -50,7 +50,7 @@ public class UsuarioService {
         return usuarioRepository.save(newUser);
     }
 
-    public Usuario updateUser(String id, Usuario usuarioAtualizado) {
+    public Usuario atualizarUsuario(String id, Usuario usuarioAtualizado) {
         Optional<Usuario> usuarioExistente = usuarioRepository.findById(id);
 
         if (usuarioExistente.isPresent()) {
@@ -60,6 +60,11 @@ public class UsuarioService {
                 usuario.setNome(usuarioAtualizado.getNome());
             }
             if (usuarioAtualizado.getEmail() != null) {
+                // verificação de atributo único
+                Optional<Usuario> emailExistente = usuarioRepository.findByEmail(usuarioAtualizado.getEmail());
+                
+                if (emailExistente.isPresent() && !emailExistente.get().getId().equals(id))
+                    throw new IllegalArgumentException("Email já registrado - " + usuarioAtualizado.getEmail());
                 usuario.setEmail(usuarioAtualizado.getEmail());
             }
             if (usuarioAtualizado.getTelefone() != null) {
@@ -73,12 +78,11 @@ public class UsuarioService {
             }
     
             return usuarioRepository.save(usuario);
-        } else {
+        } else
             throw new RuntimeException("Usuário não encontrado com o ID: " + id);
-        }
     }
 
-    public void deleteUser(String id) {
+    public void deletarUsuario(String id) {
         if (usuarioRepository.existsById(id))
             usuarioRepository.deleteById(id);
         else
