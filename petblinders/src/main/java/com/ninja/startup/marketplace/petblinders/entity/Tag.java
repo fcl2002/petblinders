@@ -26,6 +26,17 @@ public class Tag {
         return id;
     }
 
+
+    public List<Item> getItens() {
+		return itens;
+	}
+
+	public void setItens(List<Item> itens) {
+		this.itens = itens;
+	}
+
+	public void setId(String id) {
+
     public void setId(String id) {
         this.id = id;
     }
@@ -39,3 +50,4 @@ public class Tag {
     }
 
 }
+

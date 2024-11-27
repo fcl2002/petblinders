@@ -8,7 +8,10 @@ import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
+
+      // senha não pode ser exibida no console log
 @Document(collection = "usuarios")
+
 public class Usuario {
     @Id
     private String id;
@@ -25,12 +28,13 @@ public class Usuario {
     @Indexed(unique = true)
     private String telefone;
 
-    private Boolean vendedor;
+    private boolean vendedor;
+
 
     @DBRef
     @Field("pedidos")
     private List<Pedido> pedidos;
-
+  
     public Usuario(String id, String nome, String email, String senha, String telefone, Boolean vendedor, List<Pedido> pedidos) {
         this.id = id;
         this.nome = nome;

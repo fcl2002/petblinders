@@ -9,6 +9,9 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import jakarta.validation.constraints.Min;
 import java.time.LocalDateTime;
 
+import java.util.List;
+
+
 @Document(collection = "pedidos")
 public class Pedido {
 
@@ -25,6 +28,7 @@ public class Pedido {
 
     @DBRef
     private Usuario usuario;
+
 
     @CreatedDate
     private LocalDateTime dataCriacao;
