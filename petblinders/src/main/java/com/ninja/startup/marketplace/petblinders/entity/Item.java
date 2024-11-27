@@ -1,16 +1,13 @@
 package com.ninja.startup.marketplace.petblinders.entity;
 
+
 import java.util.ArrayList;
 import java.util.List;
-
-import lombok.Data;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Data
 @Document(collection = "itens")
-
 public class Item {
 	@Id
     private String id;
@@ -84,7 +81,3 @@ public class Item {
 	public void setTags(List<Tag> tags) {
 		this.tags = tags;
 	}
-    
-    
-    
-}

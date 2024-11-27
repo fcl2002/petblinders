@@ -22,11 +22,10 @@ public class Tag {
     }
 
     // Getters e Setters
-    
-    
     public String getId() {
         return id;
     }
+
 
     public List<Item> getItens() {
 		return itens;
@@ -37,6 +36,8 @@ public class Tag {
 	}
 
 	public void setId(String id) {
+
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -49,3 +50,4 @@ public class Tag {
     }
 
 }
+
