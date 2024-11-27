@@ -1,4 +1,4 @@
-package com.ninja.startup.marketplace.petblinders.controllers;
+package com.ninja.startup.marketplace.petblinders.controller;
 
 import java.util.List;
 
@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ninja.startup.marketplace.petblinders.entity.Item;
-import com.ninja.startup.marketplace.petblinders.services.ItemService;
+import com.ninja.startup.marketplace.petblinders.service.ItemService;
 
 @RestController
 @RequestMapping("/items")

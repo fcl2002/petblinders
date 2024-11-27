@@ -1,4 +1,4 @@
-package com.ninja.startup.marketplace.petblinders.services;
+package com.ninja.startup.marketplace.petblinders.service;
 
 import java.util.List;
 import java.util.NoSuchElementException;
