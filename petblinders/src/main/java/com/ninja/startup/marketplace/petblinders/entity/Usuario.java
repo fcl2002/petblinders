@@ -8,10 +8,7 @@ import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
-
-      // senha não pode ser exibida no console log
 @Document(collection = "usuarios")
-
 public class Usuario {
     @Id
     private String id;
@@ -32,16 +29,21 @@ public class Usuario {
 
 
     @DBRef
+    @Field("carrinho")
+    private Carrinho carrinho;
+    
+    @DBRef
     @Field("pedidos")
     private List<Pedido> pedidos;
-  
-    public Usuario(String id, String nome, String email, String senha, String telefone, Boolean vendedor, List<Pedido> pedidos) {
+
+    public Usuario(String id, String nome, String email, String senha, String telefone, Boolean vendedor, Carrinho carrinho, List<Pedido> pedidos) {
         this.id = id;
         this.nome = nome;
         this.email = email;
         this.senha = senha;
         this.telefone = telefone;
         this.vendedor = vendedor;
+        this.carrinho = carrinho;
         this.pedidos = pedidos;
     }
 
@@ -94,6 +96,14 @@ public class Usuario {
         this.vendedor = vendedor;
     }
     
+    public Carrinho getCarrinho() {
+        return carrinho;
+    }
+    
+    public void setCarrinho(Carrinho carrinho) {
+        this.carrinho = carrinho;
+    }
+
     public List<Pedido> getPedidos() {
         return pedidos;
     }

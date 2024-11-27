@@ -11,11 +11,12 @@ import com.ninja.startup.marketplace.petblinders.entity.Tag;
 import com.ninja.startup.marketplace.petblinders.repository.ItemRepository;
 import com.ninja.startup.marketplace.petblinders.repository.TagRepository;
 
-
 @Service
 public class ItemService {
+	
 	@Autowired
 	ItemRepository itemRepository;
+	
 	@Autowired
 	TagRepository tagRepository;
 	
@@ -26,17 +27,21 @@ public class ItemService {
 	public void addItem(Item item) {
 		itemRepository.save(item);
 	}
+	
 	public Item findByNome(String nome) {
 		return itemRepository.findByNome(nome).get();
 	}
+	
 	public Item findById(String id) {
 		return itemRepository.findById(id)
 				.orElseThrow(()->new NoSuchElementException("Item not found with id: " + id));
 	}
+	
 	public void deleteItem(String id) {
 		Item item = findById(id);
 		itemRepository.delete(item);
 	}
+	
 	public Item updadeItem(Item request, String id) {
 		Item item = findById(id);
 		if(request.getNome() != null)

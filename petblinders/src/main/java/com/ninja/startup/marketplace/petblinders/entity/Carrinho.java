@@ -22,14 +22,20 @@ public class Carrinho {
     @DBRef
     private List<Item> itens;
 
+    public Carrinho() {
+        
+    }
+
     public Carrinho(String id, double valorTotal, List<Item> itens) {
         this.id = id;
         this.valorTotal = valorTotal;
-        this.itens = itens;
+        this.itens = List.of();
     }
 
     public void calcularTotal() {
-        // atualizar o valor da variável
+        this.valorTotal = itens.stream()
+                            .mapToDouble(item -> item.getValor() * item.getQuantidade())
+                            .sum();
     }
 
     // Getters e Setters
