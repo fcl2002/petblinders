@@ -35,8 +35,8 @@ public class Tag {
 		this.itens = itens;
 	}
 
-	public void setId(String id) {
-
+	
+	
     public void setId(String id) {
         this.id = id;
     }

@@ -81,3 +81,4 @@ public class Item {
 	public void setTags(List<Tag> tags) {
 		this.tags = tags;
 	}
+}
