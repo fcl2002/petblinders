@@ -48,13 +48,14 @@ public class ItemService {
 		return itemRepository.save(item);
 	}
 	
-	public Item addTag(String idTag, String idItem) {
+	public void addTag(String idTag, String idItem) {
 		Item item = findById(idItem);
 		Tag tag = tagRepository.findById(idTag)
 				.orElseThrow(()-> new NoSuchElementException("Tag not found with id: "+idTag));
 		item.getTags().add(tag);
 		tag.getItens().add(item);
 		
-		return itemRepository.save(item);
+		tagRepository.save(tag);
+		itemRepository.save(item);
 	}
 }
