@@ -1,5 +1,6 @@
 package com.ninja.startup.marketplace.petblinders.entity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.data.annotation.Id;
@@ -14,7 +15,7 @@ public class Tag {
     private String nome;
 
     @DBRef
-    List<Item> itens;
+    List<Item> itens = new ArrayList<>();
 
     public Tag(String id, String nome) {
         this.id = id;

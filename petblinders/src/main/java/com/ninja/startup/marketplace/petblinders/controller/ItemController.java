@@ -3,6 +3,7 @@ package com.ninja.startup.marketplace.petblinders.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,43 +17,45 @@ import com.ninja.startup.marketplace.petblinders.entity.Item;
 import com.ninja.startup.marketplace.petblinders.service.ItemService;
 
 @RestController
-@RequestMapping("/items")
+@RequestMapping("/api/item")
 public class ItemController {
+	
 	@Autowired
 	ItemService itemService;
-	
-	@GetMapping
-	public List<Item> findAll(){
-		return itemService.findAll();
-	}
 	
 	@PostMapping
 	public void addItem(@RequestBody Item item) {
 		itemService.addItem(item);
 	}
+
+	@GetMapping("/all")
+	public ResponseEntity<List<Item>> findAll() {
+		List<Item> itens = itemService.findAll();
+		return ResponseEntity.ok(itens);
+	}
 	
-	@PutMapping(value = "/{id}")
+	@PutMapping("/{id}")
 	public Item updateItem(@RequestBody Item item, @PathVariable String id) {
 		
 		return itemService.updadeItem(item, id);
 	}
 	
-	@GetMapping(value = "/{id}")
+	@GetMapping("/{id}")
 	public Item findByid(@PathVariable String id) {
 		return itemService.findById(id);
 	}
 	
-	@GetMapping(value = "/name/{nome}")
+	@GetMapping("/name/{nome}")
 	public Item findByName(@PathVariable String nome) {
 		return itemService.findByNome(nome);
 	}
 	
-	@DeleteMapping(value = "{id}")
+	@DeleteMapping("{id}")
 	public void deleteItem(@PathVariable String id) {
 		itemService.deleteItem(id);
 	}
 	
-	@PutMapping(value = "/{idItem}/tags/{idTag}")
+	@PutMapping("/{idItem}/tags/{idTag}")
 	public void addTag(@PathVariable String idTag, @PathVariable String idItem) {
 		itemService.addTag(idTag, idItem);
 	}
