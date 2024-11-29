@@ -13,6 +13,5 @@ public class PetblindersApplication implements CommandLineRunner {
         SpringApplication.run(PetblindersApplication.class, args);
     }
 
-    public void run(String... args) throws Exception {
-    }
+    public void run(String... args) throws Exception { }
 }

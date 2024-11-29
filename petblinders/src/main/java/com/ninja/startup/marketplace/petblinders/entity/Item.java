@@ -20,8 +20,6 @@ public class Item {
     
     public Item() {}
     
-    
-
 	public Item(String id, String nome, double valor, int quantidade, String descricao, List<Tag> tags) {
 		super();
 		this.id = id;

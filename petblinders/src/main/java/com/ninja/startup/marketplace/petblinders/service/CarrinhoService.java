@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ninja.startup.marketplace.petblinders.entity.Carrinho;
+import com.ninja.startup.marketplace.petblinders.entity.Item;
 import com.ninja.startup.marketplace.petblinders.repository.CarrinhoRepository;
 
 @Service
@@ -34,6 +35,8 @@ public class CarrinhoService {
     public Carrinho atualizarCarrinho(String id, Carrinho carrinhoAtualizado) {
         Carrinho c = getCarrinhoById(id);
         c.setItens(carrinhoAtualizado.getItens());
+        c.calcularTotal(carrinhoAtualizado.getItens());
+        
         return carrinhoRepository.save(c);
     }
 
@@ -42,5 +45,31 @@ public class CarrinhoService {
             carrinhoRepository.deleteById(id);
         else
             throw new RuntimeException("Carrinho não encontrado com o ID: " + id);
+    }
+
+    public Carrinho adicionarItem(String idCarrinho, Item novoItem) {
+
+        Carrinho carrinho = getCarrinhoById(idCarrinho);
+        
+        List<Item> itens = carrinho.getItens();
+        boolean itemExistente = false;
+
+        for(Item item : itens) {
+            if (item.getId().equals(novoItem.getId())) {
+                item.setQuantidade(item.getQuantidade() + novoItem.getQuantidade());
+                itemExistente = true;
+                break;                
+            }
+        }
+
+        if(!itemExistente) {
+            novoItem.setQuantidade(novoItem.getQuantidade());
+            itens.add(novoItem);
+        }
+
+        carrinho.setItens(itens);
+        carrinho.calcularTotal(itens);
+        
+        return carrinhoRepository.save(carrinho);
     }
 }

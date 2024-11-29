@@ -36,6 +36,8 @@ public class Usuario {
     @Field("pedidos")
     private List<Pedido> pedidos;
 
+    public Usuario() { }
+
     public Usuario(String id, String nome, String email, String senha, String telefone, Boolean vendedor, Carrinho carrinho, List<Pedido> pedidos) {
         this.id = id;
         this.nome = nome;

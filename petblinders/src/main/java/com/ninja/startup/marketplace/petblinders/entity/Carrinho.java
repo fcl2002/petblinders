@@ -22,9 +22,7 @@ public class Carrinho {
     @DBRef
     private List<Item> itens;
 
-    public Carrinho() {
-        
-    }
+    public Carrinho() { }
 
     public Carrinho(String id, double valorTotal, List<Item> itens) {
         this.id = id;
@@ -32,7 +30,7 @@ public class Carrinho {
         this.itens = List.of();
     }
 
-    public void calcularTotal() {
+    public void calcularTotal(List<Item> itens) {
         this.valorTotal = itens.stream()
                             .mapToDouble(item -> item.getValor() * item.getQuantidade())
                             .sum();

@@ -9,7 +9,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ninja.startup.marketplace.petblinders.entity.Carrinho;
+import com.ninja.startup.marketplace.petblinders.entity.Item;
 import com.ninja.startup.marketplace.petblinders.service.CarrinhoService;
+
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -31,8 +33,8 @@ public class CarrinhoController {
 
     @PostMapping
     public ResponseEntity<Carrinho> criarCarrinho(@RequestBody Carrinho carrinho) {
-        Carrinho newCarrinho = carrinhoService.criarCarrinho(carrinho);
-        return ResponseEntity.status(HttpStatus.CREATED).body(newCarrinho);            
+        Carrinho novoCarrinho = carrinhoService.criarCarrinho(carrinho);
+        return ResponseEntity.status(HttpStatus.CREATED).body(novoCarrinho);            
     }
 
     @GetMapping("/all")
@@ -58,5 +60,18 @@ public class CarrinhoController {
     public ResponseEntity<String> deletarCarrinho(@PathVariable String id) {
         carrinhoService.deletarCarrinho(id);
         return ResponseEntity.ok("Carrinho deletado (id: " + id + ")");
+    }
+
+    @PutMapping("{carrinhoId}/item")
+    public ResponseEntity<Carrinho> adicionarItem(@RequestBody Item item, @PathVariable String carrinhoId) {
+
+        try {
+            Carrinho carrinhoAtualizado = carrinhoService.adicionarItem(carrinhoId, item);
+            return ResponseEntity.ok(carrinhoAtualizado);
+        } catch (IllegalArgumentException ex) {
+            return ResponseEntity.badRequest().body(null);
+        } catch (RuntimeException ex) {
+            return ResponseEntity.notFound().build();
+        }
     }
 }
