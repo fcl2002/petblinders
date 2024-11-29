@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ninja.startup.marketplace.petblinders.dto.TagDTO;
 import com.ninja.startup.marketplace.petblinders.entity.Tag;
 import com.ninja.startup.marketplace.petblinders.service.TagService;
 
@@ -23,7 +24,7 @@ public class TagController {
 	private TagService tagService;
 	
 	@GetMapping
-	public List<Tag> findAll(){
+	public List<TagDTO> findAll(){
 		return tagService.findAll();
 	}
 	

@@ -6,6 +6,7 @@ import java.util.NoSuchElementException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.ninja.startup.marketplace.petblinders.dto.ItemDto;
 import com.ninja.startup.marketplace.petblinders.entity.Item;
 import com.ninja.startup.marketplace.petblinders.entity.Tag;
 import com.ninja.startup.marketplace.petblinders.repository.ItemRepository;
@@ -20,8 +21,10 @@ public class ItemService {
 	@Autowired
 	TagRepository tagRepository;
 	
-	public List<Item> findAll(){
-		return itemRepository.findAll();
+	public List<ItemDto> findAll(){
+		List<Item> itens = itemRepository.findAll();
+		List<ItemDto> dto = itens.stream().map(ItemDto::new).toList();
+		return dto;
 	}
 	
 	public void addItem(Item item) {
@@ -32,18 +35,22 @@ public class ItemService {
 		return itemRepository.findByNome(nome).get();
 	}
 	
-	public Item findById(String id) {
-		return itemRepository.findById(id)
+	public ItemDto findById(String id) {
+		Item item = itemRepository.findById(id)
 				.orElseThrow(()->new NoSuchElementException("Item not found with id: " + id));
+		ItemDto dto = new ItemDto(item);
+		return dto;
 	}
 	
 	public void deleteItem(String id) {
-		Item item = findById(id);
+		Item item = itemRepository.findById(id)
+				.orElseThrow(()->new NoSuchElementException("Item not found with id: " + id));
 		itemRepository.delete(item);
 	}
 	
 	public Item updadeItem(Item request, String id) {
-		Item item = findById(id);
+		Item item = itemRepository.findById(id)
+				.orElseThrow(()->new NoSuchElementException("Item not found with id: " + id));
 		if(request.getNome() != null)
 			item.setNome(request.getNome());
 		
@@ -54,7 +61,8 @@ public class ItemService {
 	}
 	
 	public void addTag(String idTag, String idItem) {
-		Item item = findById(idItem);
+		Item item = itemRepository.findById(idItem)
+				.orElseThrow(()->new NoSuchElementException("Item not found with id: " + idItem));
 		Tag tag = tagRepository.findById(idTag)
 				.orElseThrow(()-> new NoSuchElementException("Tag not found with id: "+idTag));
 		item.getTags().add(tag);

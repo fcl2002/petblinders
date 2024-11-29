@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ninja.startup.marketplace.petblinders.dto.ItemDto;
 import com.ninja.startup.marketplace.petblinders.entity.Item;
 import com.ninja.startup.marketplace.petblinders.service.ItemService;
 
@@ -29,8 +30,8 @@ public class ItemController {
 	}
 
 	@GetMapping("/all")
-	public ResponseEntity<List<Item>> findAll() {
-		List<Item> itens = itemService.findAll();
+	public ResponseEntity<List<ItemDto>> findAll() {
+		List<ItemDto> itens = itemService.findAll();
 		return ResponseEntity.ok(itens);
 	}
 	
@@ -41,7 +42,7 @@ public class ItemController {
 	}
 	
 	@GetMapping("/{id}")
-	public Item findByid(@PathVariable String id) {
+	public ItemDto findByid(@PathVariable String id) {
 		return itemService.findById(id);
 	}
 	
