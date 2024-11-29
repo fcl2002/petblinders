@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.ninja.startup.marketplace.petblinders.dto.UsuarioDTO;
 import com.ninja.startup.marketplace.petblinders.entity.Carrinho;
 import com.ninja.startup.marketplace.petblinders.entity.Usuario;
 import com.ninja.startup.marketplace.petblinders.repository.CarrinhoRepository;
@@ -25,13 +26,21 @@ public class UsuarioService {
         this.carrinhoRepository = carrinhoRepository;
     }
 
-    public List<Usuario> getAll() {
-        return usuarioRepository.findAll();
+    public List<UsuarioDTO> getAll() {
+    	List<Usuario> usuarios = usuarioRepository.findAll();
+    	
+    	List<UsuarioDTO> dto = usuarios.stream().map(UsuarioDTO::new).toList();
+    	
+        return dto;
     }
 
-    public Usuario getUserById(String id) {
-        return usuarioRepository.findById(id)
+    public UsuarioDTO getUserById(String id) {
+    	Usuario usuario = usuarioRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Usuário não encontrado com o ID: " + id));
+    	
+    	UsuarioDTO dto = new UsuarioDTO(usuario);
+    	
+        return dto;
     }
 
     public Usuario criarUsuario(Usuario usuario) {
@@ -54,7 +63,8 @@ public class UsuarioService {
         Optional<Usuario> usuarioExistente = usuarioRepository.findById(id);
 
         if (usuarioExistente.isPresent()) {
-            Usuario usuario = getUserById(id);
+            Usuario usuario = usuarioRepository.findById(id)
+                    .orElseThrow(() -> new IllegalArgumentException("Usuário não encontrado com o ID: " + id));
     
             if (usuarioAtualizado.getNome() != null) {
                 usuario.setNome(usuarioAtualizado.getNome());

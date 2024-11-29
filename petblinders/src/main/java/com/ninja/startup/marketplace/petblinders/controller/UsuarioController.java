@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ninja.startup.marketplace.petblinders.dto.UsuarioDTO;
 import com.ninja.startup.marketplace.petblinders.entity.Usuario;
 import com.ninja.startup.marketplace.petblinders.service.UsuarioService;
 
@@ -28,14 +29,14 @@ public class UsuarioController {
     }
 
     @GetMapping("/all")
-    public List<Usuario> listarUsuarios() {
-        List<Usuario> usuarios = usuarioService.getAll();
+    public List<UsuarioDTO> listarUsuarios() {
+        List<UsuarioDTO> usuarios = usuarioService.getAll();
         System.out.println(usuarios);
         return usuarios;
     }
     
     @GetMapping("/{id}")
-    public Usuario buscarUsuario(@PathVariable String id) {
+    public UsuarioDTO buscarUsuario(@PathVariable String id) {
         return usuarioService.getUserById(id);
     }
 

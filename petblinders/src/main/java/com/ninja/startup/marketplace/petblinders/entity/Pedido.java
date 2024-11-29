@@ -77,11 +77,11 @@ public class Pedido {
         this.valorTotal = valorTotal;
     }
 
-    public Usuario getUsuarios() {
+    public Usuario getUsuario() {
         return usuario;
     }
 
-    public void setUsuarios(Usuario usuario) {
+    public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
 

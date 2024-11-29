@@ -1,5 +1,6 @@
 package com.ninja.startup.marketplace.petblinders.entity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.data.annotation.Id;
@@ -34,7 +35,7 @@ public class Usuario {
     
     @DBRef
     @Field("pedidos")
-    private List<Pedido> pedidos;
+    private List<Pedido> pedidos = new ArrayList<>();
 
     public Usuario() { }
 
