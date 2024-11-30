@@ -32,8 +32,6 @@ public class Item {
 		this.tags = tags;
 	}
 
-
-
 	public String getId() {
 		return id;
 	}

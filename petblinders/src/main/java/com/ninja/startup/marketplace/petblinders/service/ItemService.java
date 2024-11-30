@@ -58,17 +58,53 @@ public class ItemService {
 		return itemRepository.save(item);
 	}
 	
-	public Item addTag(String idTag, String idItem) {
+	public ItemDTO addTag(String idTag, String idItem) {
 		Item item = itemRepository.findById(idItem)
 					 .orElseThrow(()->new NoSuchElementException("Item not found with id: " + idItem));
 		Tag tag = tagRepository.findById(idTag)
 					 .orElseThrow(()-> new NoSuchElementException("Tag not found with id: "+idTag));
 		
-					 item.getTags().add(tag);
+		item.getTags().add(tag);
 		tag.getItens().add(item);
 		
 		tagRepository.save(tag);
-		return itemRepository.save(item);
+		itemRepository.save(item);
+		ItemDTO dto = new ItemDTO(item);
+
+		return dto;
+	}
+
+	public ItemDTO removeTag(String idTag, String idItem) {
+		Item item = itemRepository.findById(idItem)
+					 .orElseThrow(()->new NoSuchElementException("Item not found with id: " + idItem));
+		Tag tag = tagRepository.findById(idTag)
+					 .orElseThrow(()-> new NoSuchElementException("Tag not found with id: " + idTag));
+
+		List<Tag> tags = item.getTags();
+		for(Tag t : tags) {
+			if(t.getId().equals(tag.getId())) {
+				tags.remove(t);
+				break;
+			}
+		}
+		
+		item.setTags(tags);
+		itemRepository.save(item);
+
+		List<Item> itens = tag.getItens();
+		for(Item i : itens) {
+			if(i.getId().equals(item.getId())) {
+				itens.remove(i);
+				break;
+			}
+		}
+		
+		tag.setItens(itens);
+		tagRepository.save(tag);
+
+		ItemDTO dto = new ItemDTO(item);
+
+		return dto;
 	}
 
 	public void deleteItem(String id) {

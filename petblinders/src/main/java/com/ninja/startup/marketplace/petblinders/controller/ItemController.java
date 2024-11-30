@@ -56,11 +56,17 @@ public class ItemController {
 	}
 
 	@PutMapping("/{idItem}/tags/{idTag}")
-	public ResponseEntity<Item> addTag(@PathVariable String idTag, @PathVariable String idItem) {
-		Item item = itemService.addTag(idTag, idItem);
+	public ResponseEntity<ItemDTO> addTag(@PathVariable String idTag, @PathVariable String idItem) {
+		ItemDTO item = itemService.addTag(idTag, idItem);
 		return ResponseEntity.ok(item);
 	}
 	
+	@DeleteMapping("/{idItem}/tags/{idTag}")
+	public ResponseEntity<ItemDTO> removeTag(@PathVariable String idTag, @PathVariable String idItem) {
+		ItemDTO item = itemService.removeTag(idTag, idItem);
+		return ResponseEntity.ok(item);
+	}
+
 	@DeleteMapping("{id}")
 	public ResponseEntity<String> deleteItem(@PathVariable String id) {
 		itemService.deleteItem(id);

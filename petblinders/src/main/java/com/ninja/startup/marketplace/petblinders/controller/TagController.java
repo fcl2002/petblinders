@@ -34,14 +34,14 @@ public class TagController {
 		return tagService.addTag(tag);
 	}
 	
+	@PutMapping(value = "/{id}")
+	public ResponseEntity<Tag> updateTag(@RequestBody Tag tag, @PathVariable String id){
+		return ResponseEntity.ok(tagService.updateTag(id, tag));
+	}
+
 	@DeleteMapping(value = "/{id}")
 	public ResponseEntity<String> deleteTag(@PathVariable String id){
 		tagService.deleteTag(id);
 		return ResponseEntity.ok("Tag deletada (id: " + id + ")");
-	}
-	
-	@PutMapping(value = "/{id}")
-	public ResponseEntity<Tag> updateTag(@RequestBody Tag tag, @PathVariable String id){
-		return ResponseEntity.ok(tagService.updateTag(id, tag));
 	}
 }

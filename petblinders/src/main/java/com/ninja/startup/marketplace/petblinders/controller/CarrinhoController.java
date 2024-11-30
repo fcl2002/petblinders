@@ -55,12 +55,6 @@ public class CarrinhoController {
         return ResponseEntity.ok(c);
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<String> deletarCarrinho(@PathVariable String id) {
-        carrinhoService.deletarCarrinho(id);
-        return ResponseEntity.ok("Carrinho deletado (id: " + id + ")");
-    }
-
     @PutMapping("{carrinhoId}/item")
     public ResponseEntity<Carrinho> adicionarItem(@RequestBody Item item, @PathVariable String carrinhoId) {
 
@@ -72,5 +66,11 @@ public class CarrinhoController {
         } catch (RuntimeException ex) {
             return ResponseEntity.notFound().build();
         }
+    }
+    
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> deletarCarrinho(@PathVariable String id) {
+        carrinhoService.deletarCarrinho(id);
+        return ResponseEntity.ok("Carrinho deletado (id: " + id + ")");
     }
 }
