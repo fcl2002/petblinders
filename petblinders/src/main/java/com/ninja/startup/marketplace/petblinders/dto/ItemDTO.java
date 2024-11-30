@@ -12,7 +12,8 @@ public class ItemDTO {
 	private int quantidade;
 	private String descricao;
 
-	List<String> nomesTags = new ArrayList<>();
+	List<String> idTags = new ArrayList<>();
+	List<String> nomeTags = new ArrayList<>();
 
 	public ItemDTO() { }
 
@@ -22,10 +23,10 @@ public class ItemDTO {
 		this.descricao = item.getDescricao();
 		this.valor = item.getValor();
 		this.quantidade = item.getQuantidade();
-		item.getTags().forEach(tag -> this.nomesTags.add(tag.getNome()));
+		item.getTags().forEach(tag -> this.idTags.add(tag.getId()));
+		item.getTags().forEach(tag -> this.nomeTags.add(tag.getNome()));
 	}
 
-	
 	
 	public String getId() {
 		return id;
@@ -47,7 +48,11 @@ public class ItemDTO {
 		return descricao;
 	}
 
+	public List<String> getIdTags() {
+		return idTags;
+	}
+
 	public List<String> getNomesTags() {
-		return nomesTags;
+		return nomeTags;
 	}
 }
