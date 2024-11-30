@@ -24,8 +24,9 @@ public class TagController {
 	private TagService tagService;
 	
 	@GetMapping
-	public List<TagDTO> findAll(){
-		return tagService.findAll();
+	public ResponseEntity<List<TagDTO>> findAll() {
+		List<TagDTO> dtos = tagService.findAll();
+		return ResponseEntity.ok(dtos);
 	}
 	
 	@PostMapping
@@ -36,7 +37,7 @@ public class TagController {
 	@DeleteMapping(value = "/{id}")
 	public ResponseEntity<String> deleteTag(@PathVariable String id){
 		tagService.deleteTag(id);
-		return ResponseEntity.ok("tag deletada id:" + id);
+		return ResponseEntity.ok("Tag deletada (id: " + id + ")");
 	}
 	
 	@PutMapping(value = "/{id}")

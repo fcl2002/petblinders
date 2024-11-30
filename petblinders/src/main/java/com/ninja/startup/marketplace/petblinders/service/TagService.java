@@ -15,30 +15,50 @@ public class TagService {
 	@Autowired
 	private TagRepository tagRepository;
 	
-	public Tag addTag(Tag tag) {	
+	public Tag addTag(Tag tag) {
+		
+		String nomeFormatado = formatTagName(tag.getNome());
+
+		if (tagRepository.existsByNomeIgnoreCase(nomeFormatado))
+			throw new IllegalArgumentException("Tag already exists with name: " + tag.getNome());
+		
+		tag.setNome(nomeFormatado);
 		return tagRepository.save(tag);
 	}
 	
-	public List<TagDTO> findAll(){
+	public String formatTagName(String nome) {
+			
+		if(nome.isBlank() || nome == null)
+			throw new IllegalArgumentException("Tag name cannot be blank or null");
+
+		nome = nome.trim().toLowerCase();
+		return nome.substring(0, 1).toUpperCase() + nome.substring(1);
+	}
+	
+	public List<TagDTO> findAll() {
+
 		List<Tag> tags = tagRepository.findAll();
-		
 		List<TagDTO> dto = tags.stream().map(TagDTO::new).toList();
-		
 		return dto;
 	}
 	
 	public void deleteTag(String id) {
 		Tag tag = tagRepository.findById(id)
-				.orElseThrow(()-> new NoSuchElementException("tag not found with id: " + id));
+					.orElseThrow(()-> new NoSuchElementException("Tag not found with id: " + id));
 		
 		tagRepository.delete(tag);
 	}
 	
 	public Tag updateTag(String id, Tag request) {	
 		Tag tag = tagRepository.findById(id)
-				.orElseThrow(()->new NoSuchElementException("tag not found with id: "+id));
-		tag.setNome(request.getNome());
-		tagRepository.save(tag);
-		return tag;
+				   	.orElseThrow(()->new NoSuchElementException("Tag not found with id: "+id));
+
+		String nomeFormatado = formatTagName(request.getNome());
+		
+		if (tagRepository.existsByNomeIgnoreCase(nomeFormatado))
+			throw new IllegalArgumentException("Tag already exists with name: " + request.getNome());
+		
+		tag.setNome(nomeFormatado);
+		return tagRepository.save(tag);
 	}
 }

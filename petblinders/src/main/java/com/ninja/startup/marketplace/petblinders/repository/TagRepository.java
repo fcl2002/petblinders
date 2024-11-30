@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.ninja.startup.marketplace.petblinders.entity.Tag;
 
 @Repository
-public interface TagRepository extends MongoRepository<Tag, String>{
-
+public interface TagRepository extends MongoRepository<Tag, String> {
+    boolean existsByNomeIgnoreCase(String nome);
 }

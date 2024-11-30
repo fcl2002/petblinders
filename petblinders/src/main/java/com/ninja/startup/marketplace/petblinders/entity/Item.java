@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "itens")
@@ -16,6 +17,7 @@ public class Item {
     private int quantidade;
     private String descricao; 
 
+	@DBRef
     private List<Tag> tags = new ArrayList<>();
     
     public Item() {}

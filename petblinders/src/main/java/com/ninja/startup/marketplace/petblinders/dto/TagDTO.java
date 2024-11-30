@@ -13,7 +13,11 @@ public class TagDTO {
 	
 	public TagDTO(Tag tag) {
 		this.nome = tag.getNome();
-		tag.getItens().forEach(item -> this.itensId.add(item.getId()));
+		
+		if(tag.getItens() != null)
+			tag.setItens(new ArrayList<>());
+		else
+			tag.getItens().forEach(item -> this.itensId.add(item.getId()));
 	}
 
 	public String getNome() {
