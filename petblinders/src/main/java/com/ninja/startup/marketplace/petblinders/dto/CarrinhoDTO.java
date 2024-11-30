@@ -29,7 +29,4 @@ public class CarrinhoDTO {
 	public List<ItemDTO> getItens() {
 		return itens;
 	}
-    
-    
-    
 }
