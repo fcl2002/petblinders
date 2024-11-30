@@ -3,6 +3,7 @@ package com.ninja.startup.marketplace.petblinders.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.ninja.startup.marketplace.petblinders.dto.ItemDto;
+import com.ninja.startup.marketplace.petblinders.dto.ItemDTO;
 import com.ninja.startup.marketplace.petblinders.entity.Item;
 import com.ninja.startup.marketplace.petblinders.service.ItemService;
 
@@ -25,39 +26,44 @@ public class ItemController {
 	ItemService itemService;
 	
 	@PostMapping
-	public void addItem(@RequestBody Item item) {
-		itemService.addItem(item);
+	public ResponseEntity<Item> addItem(@RequestBody Item item) {
+		Item novoItem = itemService.addItem(item);
+		return ResponseEntity.status(HttpStatus.CREATED).body(novoItem);
 	}
 
 	@GetMapping("/all")
-	public ResponseEntity<List<ItemDto>> findAll() {
-		List<ItemDto> itens = itemService.findAll();
+	public ResponseEntity<List<ItemDTO>> findAll() {
+		List<ItemDTO> itens = itemService.findAll();
 		return ResponseEntity.ok(itens);
 	}
 	
-	@PutMapping("/{id}")
-	public Item updateItem(@RequestBody Item item, @PathVariable String id) {
-		
-		return itemService.updadeItem(item, id);
-	}
-	
 	@GetMapping("/{id}")
-	public ItemDto findByid(@PathVariable String id) {
-		return itemService.findById(id);
+	public ResponseEntity<ItemDTO> findByid(@PathVariable String id) {
+		ItemDTO item = itemService.findById(id);
+		return ResponseEntity.ok(item);
 	}
-	
+
 	@GetMapping("/name/{nome}")
-	public Item findByName(@PathVariable String nome) {
-		return itemService.findByNome(nome);
+	public ResponseEntity<ItemDTO> findByName(@PathVariable String nome) {
+		ItemDTO item = itemService.findByNome(nome);
+		return ResponseEntity.ok(item);
+	}
+
+	@PutMapping("/{id}")
+	public ResponseEntity<Item> updateItem(@RequestBody Item item, @PathVariable String id) {
+		Item novoItem = itemService.updadeItem(item, id);
+		return ResponseEntity.ok(novoItem);
+	}
+
+	@PutMapping("/{idItem}/tags/{idTag}")
+	public ResponseEntity<Item> addTag(@PathVariable String idTag, @PathVariable String idItem) {
+		Item item = itemService.addTag(idTag, idItem);
+		return ResponseEntity.ok(item);
 	}
 	
 	@DeleteMapping("{id}")
-	public void deleteItem(@PathVariable String id) {
+	public ResponseEntity<String> deleteItem(@PathVariable String id) {
 		itemService.deleteItem(id);
-	}
-	
-	@PutMapping("/{idItem}/tags/{idTag}")
-	public void addTag(@PathVariable String idTag, @PathVariable String idItem) {
-		itemService.addTag(idTag, idItem);
+		return ResponseEntity.ok("Item deletado (id: " + id + ")");
 	}
 }

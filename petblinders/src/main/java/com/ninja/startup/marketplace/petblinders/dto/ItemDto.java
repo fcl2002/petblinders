@@ -5,23 +5,23 @@ import java.util.List;
 
 import com.ninja.startup.marketplace.petblinders.entity.Item;
 
-public class ItemDto {
+public class ItemDTO {
 	private String nome;
-    private double valor;
-    private int quantidade;
-    private String descricao;
-    
-    List<String> idTags = new ArrayList<>();
-    
-    public ItemDto() {}
-    
-    public ItemDto(Item item) {
-    	this.nome = item.getNome();
-    	this.descricao = item.getDescricao();
-    	this.valor = item.getValor();
-    	this.quantidade = item.getQuantidade();
-    	item.getTags().forEach(tag -> this.idTags.add(tag.getId()));
-    }
+	private double valor;
+	private int quantidade;
+	private String descricao;
+
+	List<String> idTags = new ArrayList<>();
+
+	public ItemDTO() { }
+
+	public ItemDTO(Item item) {
+		this.nome = item.getNome();
+		this.descricao = item.getDescricao();
+		this.valor = item.getValor();
+		this.quantidade = item.getQuantidade();
+		item.getTags().forEach(tag -> this.idTags.add(tag.getId()));
+	}
 
 	public String getNome() {
 		return nome;
@@ -42,6 +42,5 @@ public class ItemDto {
 	public List<String> getIdTags() {
 		return idTags;
 	}
-    
-    
+
 }

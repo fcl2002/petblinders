@@ -6,7 +6,7 @@ import java.util.NoSuchElementException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.ninja.startup.marketplace.petblinders.dto.ItemDto;
+import com.ninja.startup.marketplace.petblinders.dto.ItemDTO;
 import com.ninja.startup.marketplace.petblinders.entity.Item;
 import com.ninja.startup.marketplace.petblinders.entity.Tag;
 import com.ninja.startup.marketplace.petblinders.repository.ItemRepository;
@@ -21,37 +21,35 @@ public class ItemService {
 	@Autowired
 	TagRepository tagRepository;
 	
-	public List<ItemDto> findAll(){
+	public List<ItemDTO> findAll(){
 		List<Item> itens = itemRepository.findAll();
-		List<ItemDto> dto = itens.stream().map(ItemDto::new).toList();
+		List<ItemDTO> dto = itens.stream().map(ItemDTO::new).toList();
 		return dto;
 	}
 	
-	public void addItem(Item item) {
-		itemRepository.save(item);
+	public Item addItem(Item item) {
+		return itemRepository.save(item);
 	}
 	
-	public Item findByNome(String nome) {
-		return itemRepository.findByNome(nome).get();
-	}
-	
-	public ItemDto findById(String id) {
-		Item item = itemRepository.findById(id)
-				.orElseThrow(()->new NoSuchElementException("Item not found with id: " + id));
-		ItemDto dto = new ItemDto(item);
+	public ItemDTO findByNome(String nome) {
+		Item item = itemRepository.findByNome(nome)
+					 .orElseThrow(()->new NoSuchElementException("Item not found with name: " + nome));
+		ItemDTO dto = new ItemDTO(item);
 		return dto;
 	}
 	
-	public void deleteItem(String id) {
+	public ItemDTO findById(String id) {
 		Item item = itemRepository.findById(id)
-				.orElseThrow(()->new NoSuchElementException("Item not found with id: " + id));
-		itemRepository.delete(item);
+					 .orElseThrow(()->new NoSuchElementException("Item not found with id: " + id));
+		ItemDTO dto = new ItemDTO(item);
+		return dto;
 	}
 	
 	public Item updadeItem(Item request, String id) {
 		Item item = itemRepository.findById(id)
-				.orElseThrow(()->new NoSuchElementException("Item not found with id: " + id));
-		if(request.getNome() != null)
+					 .orElseThrow(()->new NoSuchElementException("Item not found with id: " + id));
+		
+	    if(request.getNome() != null)
 			item.setNome(request.getNome());
 		
 		if(request.getDescricao() != null)
@@ -60,15 +58,23 @@ public class ItemService {
 		return itemRepository.save(item);
 	}
 	
-	public void addTag(String idTag, String idItem) {
+	public Item addTag(String idTag, String idItem) {
 		Item item = itemRepository.findById(idItem)
-				.orElseThrow(()->new NoSuchElementException("Item not found with id: " + idItem));
+					 .orElseThrow(()->new NoSuchElementException("Item not found with id: " + idItem));
 		Tag tag = tagRepository.findById(idTag)
-				.orElseThrow(()-> new NoSuchElementException("Tag not found with id: "+idTag));
-		item.getTags().add(tag);
+					 .orElseThrow(()-> new NoSuchElementException("Tag not found with id: "+idTag));
+		
+					 item.getTags().add(tag);
 		tag.getItens().add(item);
 		
 		tagRepository.save(tag);
-		itemRepository.save(item);
+		return itemRepository.save(item);
+	}
+
+	public void deleteItem(String id) {
+		if(itemRepository.existsById(id))
+			itemRepository.deleteById(id);
+		else
+			throw new NoSuchElementException("Item not found with id: " + id);
 	}
 }

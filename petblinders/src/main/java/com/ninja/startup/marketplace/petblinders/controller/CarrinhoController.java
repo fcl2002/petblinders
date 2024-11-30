@@ -46,12 +46,11 @@ public class CarrinhoController {
     @GetMapping("/{id}")
     public ResponseEntity<Carrinho> getCarrinho(@PathVariable String id) {
         Carrinho carrinho = carrinhoService.getCarrinhoById(id);
-        return ResponseEntity.status(HttpStatus.CREATED).body(carrinho);
+        return ResponseEntity.ok(carrinho);
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<Carrinho> atualizarCarrinho(@RequestBody Carrinho carrinho, @PathVariable String id) {
-
         Carrinho c = carrinhoService.atualizarCarrinho(id, carrinho);
         return ResponseEntity.ok(c);
     }

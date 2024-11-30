@@ -8,15 +8,20 @@ import org.springframework.stereotype.Service;
 import com.ninja.startup.marketplace.petblinders.entity.Carrinho;
 import com.ninja.startup.marketplace.petblinders.entity.Item;
 import com.ninja.startup.marketplace.petblinders.repository.CarrinhoRepository;
+import com.ninja.startup.marketplace.petblinders.repository.ItemRepository;
 
 @Service
 public class CarrinhoService {
     
     @Autowired
     private final CarrinhoRepository carrinhoRepository;
+    
+    @Autowired
+    private final ItemRepository itemRepository;
 
-    public CarrinhoService(CarrinhoRepository carrinhoRepository) {
+    public CarrinhoService(CarrinhoRepository carrinhoRepository, ItemRepository itemRepository) {
         this.carrinhoRepository = carrinhoRepository;
+        this.itemRepository = itemRepository;
     }
 
     public List<Carrinho> getCarrinhos() {
@@ -48,6 +53,16 @@ public class CarrinhoService {
     }
 
     public Carrinho adicionarItem(String idCarrinho, Item novoItem) {
+
+        Item itemOriginal = itemRepository.findById(novoItem.getId())
+                .orElseThrow(() -> new IllegalArgumentException("Item não encontrado com o ID: " + novoItem.getId()));
+
+        if (itemOriginal.getQuantidade() < novoItem.getQuantidade()) {
+            throw new IllegalArgumentException("Quantidade solicitada maior que a disponível em estoque");
+        }
+
+        itemOriginal.setQuantidade(itemOriginal.getQuantidade() - novoItem.getQuantidade());
+        itemRepository.save(itemOriginal);
 
         Carrinho carrinho = getCarrinhoById(idCarrinho);
         
