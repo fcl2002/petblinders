@@ -40,7 +40,7 @@ public class CarrinhoService {
     public Carrinho atualizarCarrinho(String id, Carrinho carrinhoAtualizado) {
         Carrinho c = getCarrinhoById(id);
         c.setItens(carrinhoAtualizado.getItens());
-        c.calcularTotal(carrinhoAtualizado.getItens());
+        c.calcularTotal();
         
         return carrinhoRepository.save(c);
     }
@@ -83,7 +83,7 @@ public class CarrinhoService {
         }
 
         carrinho.setItens(itens);
-        carrinho.calcularTotal(itens);
+        carrinho.calcularTotal();
         
         return carrinhoRepository.save(carrinho);
     }

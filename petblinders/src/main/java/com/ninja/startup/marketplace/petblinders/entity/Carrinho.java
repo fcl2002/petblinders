@@ -1,6 +1,7 @@
 package com.ninja.startup.marketplace.petblinders.entity;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.data.annotation.Id;
@@ -20,7 +21,7 @@ public class Carrinho {
     private double valorTotal;
 
     @DBRef
-    private List<Item> itens;
+    private List<Item> itens = new ArrayList<>();
 
     public Carrinho() { }
 
@@ -30,7 +31,7 @@ public class Carrinho {
         this.itens = List.of();
     }
 
-    public void calcularTotal(List<Item> itens) {
+    public void calcularTotal() {
         this.valorTotal = itens.stream()
                             .mapToDouble(item -> item.getValor() * item.getQuantidade())
                             .sum();

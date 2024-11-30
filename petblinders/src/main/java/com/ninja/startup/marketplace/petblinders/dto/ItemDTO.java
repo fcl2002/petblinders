@@ -26,7 +26,6 @@ public class ItemDTO {
 		item.getTags().forEach(tag -> this.idTags.add(tag.getId()));
 		item.getTags().forEach(tag -> this.nomeTags.add(tag.getNome()));
 	}
-
 	
 	public String getId() {
 		return id;
