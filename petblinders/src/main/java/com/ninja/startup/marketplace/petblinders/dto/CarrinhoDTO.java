@@ -8,7 +8,7 @@ import com.ninja.startup.marketplace.petblinders.entity.Carrinho;
 public class CarrinhoDTO {
 	private String id;
     private double valorTotal;
-    private List<ItemDTO> itens = new ArrayList<>();
+    private List<ItemDTO> itens = new ArrayList<>()	;
     
     public CarrinhoDTO() {}
     
