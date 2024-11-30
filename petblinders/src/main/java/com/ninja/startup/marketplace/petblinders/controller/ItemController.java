@@ -56,9 +56,10 @@ public class ItemController {
 	}
 
 	@PutMapping("/{idItem}/tags/{idTag}")
-	public ResponseEntity<Item> addTag(@PathVariable String idTag, @PathVariable String idItem) {
+	public ResponseEntity<ItemDTO> addTag(@PathVariable String idTag, @PathVariable String idItem) {
 		Item item = itemService.addTag(idTag, idItem);
-		return ResponseEntity.ok(item);
+		ItemDTO dto = new ItemDTO(item);
+		return ResponseEntity.ok(dto);
 	}
 	
 	@DeleteMapping("{id}")

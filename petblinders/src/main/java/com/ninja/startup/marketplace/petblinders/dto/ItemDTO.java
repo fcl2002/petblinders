@@ -6,6 +6,7 @@ import java.util.List;
 import com.ninja.startup.marketplace.petblinders.entity.Item;
 
 public class ItemDTO {
+	private String id;
 	private String nome;
 	private double valor;
 	private int quantidade;
@@ -16,11 +17,18 @@ public class ItemDTO {
 	public ItemDTO() { }
 
 	public ItemDTO(Item item) {
+		this.id = item.getId();
 		this.nome = item.getNome();
 		this.descricao = item.getDescricao();
 		this.valor = item.getValor();
 		this.quantidade = item.getQuantidade();
 		item.getTags().forEach(tag -> this.idTags.add(tag.getId()));
+	}
+
+	
+	
+	public String getId() {
+		return id;
 	}
 
 	public String getNome() {
