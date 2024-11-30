@@ -19,7 +19,7 @@ import com.ninja.startup.marketplace.petblinders.entity.Item;
 import com.ninja.startup.marketplace.petblinders.service.ItemService;
 
 @RestController
-@RequestMapping("/api/item")
+@RequestMapping("/items")
 public class ItemController {
 	
 	@Autowired
@@ -31,7 +31,7 @@ public class ItemController {
 		return ResponseEntity.status(HttpStatus.CREATED).body(novoItem);
 	}
 
-	@GetMapping("/all")
+	@GetMapping
 	public ResponseEntity<List<ItemDTO>> findAll() {
 		List<ItemDTO> itens = itemService.findAll();
 		return ResponseEntity.ok(itens);

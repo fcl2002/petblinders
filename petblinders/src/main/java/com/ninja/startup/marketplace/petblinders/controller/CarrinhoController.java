@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 
 
 @RestController
-@RequestMapping("/api/carrinho")
+@RequestMapping("/carrinhos")
 public class CarrinhoController {
     
     @Autowired
@@ -37,7 +37,7 @@ public class CarrinhoController {
         return ResponseEntity.status(HttpStatus.CREATED).body(novoCarrinho);            
     }
 
-    @GetMapping("/all")
+    @GetMapping
     public ResponseEntity<List<Carrinho>> getCarrinhos() {
         List<Carrinho> carrinhos = carrinhoService.getCarrinhos();
         return ResponseEntity.ok(carrinhos);
