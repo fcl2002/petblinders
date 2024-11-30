@@ -7,12 +7,14 @@ import com.ninja.startup.marketplace.petblinders.entity.Tag;
 
 public class TagDTO {
 	private String nome;
+	private String id;
 	private List<String> itensId = new ArrayList<>();
 	
 	public TagDTO() {}
 	
 	public TagDTO(Tag tag) {
 		this.nome = tag.getNome();
+		this.id = tag.getId();
 		
 		if(tag.getItens() != null)
 			tag.setItens(new ArrayList<>());
@@ -27,6 +29,24 @@ public class TagDTO {
 	public List<String> getItensId() {
 		return itensId;
 	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public void setItensId(List<String> itensId) {
+		this.itensId = itensId;
+	}
+	
+	
 	
 	
 }

@@ -3,10 +3,10 @@ package com.ninja.startup.marketplace.petblinders.dto;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.ninja.startup.marketplace.petblinders.entity.Carrinho;
 import com.ninja.startup.marketplace.petblinders.entity.Usuario;
 
 public class UsuarioDTO {
+	private String id;
 	
     private String nome;
 
@@ -16,14 +16,15 @@ public class UsuarioDTO {
 
     private boolean vendedor;
 
-    private Carrinho carrinho;
+    private CarrinhoDTO carrinho;
  
     private List<String> pedidosId = new ArrayList<>();
     
     public UsuarioDTO() {}
     
     public UsuarioDTO(Usuario usuario) {
-    	this.carrinho = usuario.getCarrinho();
+    	this.id = usuario.getId();
+    	this.carrinho = new CarrinhoDTO(usuario.getCarrinho());
     	this.email = usuario.getEmail();
     	this.nome = usuario.getNome();
     	this.telefone = usuario.getTelefone();
@@ -46,12 +47,16 @@ public class UsuarioDTO {
 		return vendedor;
 	}
 
-	public Carrinho getCarrinho() {
+	public CarrinhoDTO getCarrinho() {
 		return carrinho;
 	}
 
 	public List<String> getPedidosId() {
 		return pedidosId;
+	}
+
+	public String getId() {
+		return id;
 	}
     
     

@@ -5,19 +5,19 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
-import com.ninja.startup.marketplace.petblinders.entity.Carrinho;
-import com.ninja.startup.marketplace.petblinders.entity.Item;
-import com.ninja.startup.marketplace.petblinders.service.CarrinhoService;
-
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.ninja.startup.marketplace.petblinders.dto.CarrinhoDTO;
+import com.ninja.startup.marketplace.petblinders.entity.Carrinho;
+import com.ninja.startup.marketplace.petblinders.entity.Item;
+import com.ninja.startup.marketplace.petblinders.service.CarrinhoService;
 
 
 @RestController
@@ -32,35 +32,36 @@ public class CarrinhoController {
     }
 
     @PostMapping
-    public ResponseEntity<Carrinho> criarCarrinho(@RequestBody Carrinho carrinho) {
+    public ResponseEntity<CarrinhoDTO> criarCarrinho(@RequestBody Carrinho carrinho) {
         Carrinho novoCarrinho = carrinhoService.criarCarrinho(carrinho);
-        return ResponseEntity.status(HttpStatus.CREATED).body(novoCarrinho);            
+        return ResponseEntity.status(HttpStatus.CREATED).body(new CarrinhoDTO(novoCarrinho));            
     }
 
     @GetMapping
-    public ResponseEntity<List<Carrinho>> getCarrinhos() {
+    public ResponseEntity<List<CarrinhoDTO>> getCarrinhos() {
         List<Carrinho> carrinhos = carrinhoService.getCarrinhos();
-        return ResponseEntity.ok(carrinhos);
+        List<CarrinhoDTO> dto = carrinhos.stream().map(CarrinhoDTO::new).toList();
+        return ResponseEntity.ok(dto);
     }
     
     @GetMapping("/{id}")
-    public ResponseEntity<Carrinho> getCarrinho(@PathVariable String id) {
+    public ResponseEntity<CarrinhoDTO> getCarrinho(@PathVariable String id) {
         Carrinho carrinho = carrinhoService.getCarrinhoById(id);
-        return ResponseEntity.ok(carrinho);
+        return ResponseEntity.ok(new CarrinhoDTO(carrinho));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Carrinho> atualizarCarrinho(@RequestBody Carrinho carrinho, @PathVariable String id) {
+    public ResponseEntity<CarrinhoDTO> atualizarCarrinho(@RequestBody Carrinho carrinho, @PathVariable String id) {
         Carrinho c = carrinhoService.atualizarCarrinho(id, carrinho);
-        return ResponseEntity.ok(c);
+        return ResponseEntity.ok(new CarrinhoDTO(c));
     }
 
     @PutMapping("{carrinhoId}/item")
-    public ResponseEntity<Carrinho> adicionarItem(@RequestBody Item item, @PathVariable String carrinhoId) {
+    public ResponseEntity<CarrinhoDTO> adicionarItem(@RequestBody Item item, @PathVariable String carrinhoId) {
 
         try {
             Carrinho carrinhoAtualizado = carrinhoService.adicionarItem(carrinhoId, item);
-            return ResponseEntity.ok(carrinhoAtualizado);
+            return ResponseEntity.ok(new CarrinhoDTO(carrinhoAtualizado));
         } catch (IllegalArgumentException ex) {
             return ResponseEntity.badRequest().body(null);
         } catch (RuntimeException ex) {
