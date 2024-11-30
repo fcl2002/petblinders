@@ -26,7 +26,6 @@ public class Pedido {
     @DBRef
     private Usuario usuario;
 
-
     @CreatedDate
     private LocalDateTime dataCriacao;
 

@@ -14,7 +14,7 @@ public class Item {
     private String nome;
     private double valor;
     private int quantidade;
-    private String descricao;
+    private String descricao; 
 
     private List<Tag> tags = new ArrayList<>();
     

@@ -3,6 +3,7 @@ package com.ninja.startup.marketplace.petblinders.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,8 +25,9 @@ public class ItemController {
 	ItemService itemService;
 	
 	@PostMapping
-	public void addItem(@RequestBody Item item) {
-		itemService.addItem(item);
+	public ResponseEntity<Item> addItem(@RequestBody Item item) {
+		Item novoItem = itemService.addItem(item);
+		return ResponseEntity.status(HttpStatus.CREATED).body(novoItem);
 	}
 
 	@GetMapping("/all")
@@ -34,29 +36,31 @@ public class ItemController {
 		return ResponseEntity.ok(itens);
 	}
 	
-	@PutMapping("/{id}")
-	public Item updateItem(@RequestBody Item item, @PathVariable String id) {
-		
-		return itemService.updadeItem(item, id);
-	}
-	
 	@GetMapping("/{id}")
-	public Item findByid(@PathVariable String id) {
-		return itemService.findById(id);
+	public ResponseEntity<Item> findByid(@PathVariable String id) {
+		Item item = itemService.findById(id);
+		return ResponseEntity.ok(item);
 	}
-	
+
 	@GetMapping("/name/{nome}")
-	public Item findByName(@PathVariable String nome) {
-		return itemService.findByNome(nome);
+	public ResponseEntity<Item> findByName(@PathVariable String nome) {
+		Item item = itemService.findByNome(nome);
+		return ResponseEntity.ok(item);
+	}
+
+	@PutMapping("/{id}")
+	public ResponseEntity<Item> updateItem(@RequestBody Item item, @PathVariable String id) {
+		Item novoItem = itemService.updadeItem(item, id);
+		return ResponseEntity.ok(novoItem);
+	}
+
+	@PutMapping("/{idItem}/tags/{idTag}")
+	public void addTag(@PathVariable String idTag, @PathVariable String idItem) {
+		itemService.addTag(idTag, idItem);
 	}
 	
 	@DeleteMapping("{id}")
 	public void deleteItem(@PathVariable String id) {
 		itemService.deleteItem(id);
-	}
-	
-	@PutMapping("/{idItem}/tags/{idTag}")
-	public void addTag(@PathVariable String idTag, @PathVariable String idItem) {
-		itemService.addTag(idTag, idItem);
 	}
 }

@@ -24,12 +24,13 @@ public class ItemService {
 		return itemRepository.findAll();
 	}
 	
-	public void addItem(Item item) {
-		itemRepository.save(item);
+	public Item addItem(Item item) {
+		return itemRepository.save(item);
 	}
 	
 	public Item findByNome(String nome) {
-		return itemRepository.findByNome(nome).get();
+		return itemRepository.findByNome(nome)
+				.orElseThrow(()->new NoSuchElementException("Item not found with name: " + nome));
 	}
 	
 	public Item findById(String id) {
