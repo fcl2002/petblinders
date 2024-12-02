@@ -28,7 +28,7 @@ O **Petblinders** é um marketplace voltado para o segmento de petshops, que per
 ### **3. Gerenciamento de Usuários**
 - [ ] **Registro e login**: Módulo de autenticação com credenciais seguras.
 - [ ] **Perfil do cliente**: Informações básicas, histórico de compras e carrinho associado.
-- **Administração**: Área para gerenciar produtos e acompanhar vendas.
+- [ ] **Administração**: Área para gerenciar produtos e acompanhar vendas.
 
 ---
 
@@ -41,21 +41,21 @@ O **Petblinders** é um marketplace voltado para o segmento de petshops, que per
 ## **Possíveis Melhorias e Funcionalidades Futuras**
 
 ### **1. Personalização da Experiência do Usuário**
-- **Recomendações personalizadas**: Com base no histórico de compras e nas preferências do cliente.
-- **Ofertas e promoções**: Possibilidade de criar descontos exclusivos e campanhas sazonais.
+- [ ] **Recomendações personalizadas**: Com base no histórico de compras e nas preferências do cliente.
+- [ ] **Ofertas e promoções**: Possibilidade de criar descontos exclusivos e campanhas sazonais.
 
 ### **2. Suporte ao Vendedor**
-- **Área do fornecedor**: Painel para que fornecedores gerenciem seus produtos, acompanhem vendas e analisem relatórios.
-- **Cadastro de serviços**: Inclusão de serviços como banho, tosa e adestramento.
+- [ ] **Área do fornecedor**: Painel para que fornecedores gerenciem seus produtos, acompanhem vendas e analisem relatórios.
+- [ ] **Cadastro de serviços**: Inclusão de serviços como banho, tosa e adestramento.
 
 ### **3. Otimizações no Carrinho de Compras**
-- **Compra rápida**: Função para facilitar o processo de compra, evitando múltiplos cliques.
-- **Carrinho persistente**: Salva o carrinho do cliente mesmo que ele feche o navegador.
-- **Favoritos**: Função para o usuário monitorar um produto, como uma lista de desejos.
+- [ ] **Compra rápida**: Função para facilitar o processo de compra, evitando múltiplos cliques.
+- [ ] **Carrinho persistente**: Salva o carrinho do cliente mesmo que ele feche o navegador.
+- [ ] **Favoritos**: Permite que o usuário salve produtos em uma lista de desejos para facilitar o acesso a itens que deseja comprar posteriormente.
 
 ### **4. Expansão da Logística**
-- **Cálculo automático de frete**: Integração com APIs de transportadoras e Correios.
-- **Rastreamento de pedidos**: Atualizações em tempo real sobre a localização do pedido.
+- [ ] **Cálculo automático de frete**: Integração com APIs de transportadoras e Correios.
+- [ ] **Rastreamento de pedidos**: Atualizações em tempo real sobre a localização do pedido.
 
 ---
 
