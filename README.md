@@ -10,31 +10,31 @@ O **Petblinders** é um marketplace voltado para o segmento de petshops, que per
 ## **Principais Funcionalidades**
 
 ### **1. Gestão de Produtos**
-[X] **Criação de produtos**: Adicione produtos com informações detalhadas como nome, descrição, preço, quantidade disponível e tags associadas.
-[X] **Atualização de produtos**: Permite modificar informações do produto, incluindo nome, descrição e estoque.
-[X] **Remoção de produtos**: Exclusão de produtos descontinuados ou que não devem mais estar disponíveis.
-[X] **Tags**: Organização dos produtos por categorias, com validação de nome único e capitalização automática (primeira letra maiúscula).
+- [X] **Criação de produtos**: Adicione produtos com informações detalhadas como nome, descrição, preço, quantidade disponível e tags associadas.
+- [X] **Atualização de produtos**: Permite modificar informações do produto, incluindo nome, descrição e estoque.
+- [X] **Remoção de produtos**: Exclusão de produtos descontinuados ou que não devem mais estar disponíveis.
+- [X] **Tags**: Organização dos produtos por categorias, com validação de nome único e capitalização automática (primeira letra maiúscula).
 
 ---
 
 ### **2. Carrinho de Compras**
-[X] **Adicionar itens ao carrinho**: Possibilidade de incluir produtos no carrinho e atualizar a quantidade de itens já existentes.
-[] **Atualização automática do total**: Recalcula o valor total do carrinho sempre que um produto é adicionado ou removido.
-[X] **Remoção de itens**: Permite excluir itens do carrinho.
-[X] **Validação de estoque**: Garante que o cliente não compre mais do que a quantidade disponível.
+- [X] **Adicionar itens ao carrinho**: Possibilidade de incluir produtos no carrinho e atualizar a quantidade de itens já existentes.
+- [] **Atualização automática do total**: Recalcula o valor total do carrinho sempre que um produto é adicionado ou removido.
+- [X] **Remoção de itens**: Permite excluir itens do carrinho.
+- [X] **Validação de estoque**: Garante que o cliente não compre mais do que a quantidade disponível.
 
 ---
 
 ### **3. Gerenciamento de Usuários**
-[] **Registro e login**: Módulo de autenticação com credenciais seguras.
-[] **Perfil do cliente**: Informações básicas, histórico de compras e carrinho associado.
+- [] **Registro e login**: Módulo de autenticação com credenciais seguras.
+- [] **Perfil do cliente**: Informações básicas, histórico de compras e carrinho associado.
 - **Administração**: Área para gerenciar produtos e acompanhar vendas.
 
 ---
 
 ### **4. Integrações e APIs**
-[X] **Busca avançada**: Pesquisa de produtos por nome ou categorias (tags).
-[]  **Integração com sistemas de pagamento**: Suporte para múltiplos métodos, incluindo cartão de crédito, Pix e boleto bancário.
+- [X] **Busca avançada**: Pesquisa de produtos por nome ou categorias (tags).
+- []  **Integração com sistemas de pagamento**: Suporte para múltiplos métodos, incluindo cartão de crédito, Pix e boleto bancário.
 
 ---
 
