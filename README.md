@@ -7,34 +7,34 @@ O **Petblinders** é um marketplace voltado para o segmento de petshops, que per
 
 ---
 
-## **Principais Funcionalidades Desenvolvidas**
+## **Principais Funcionalidades**
 
 ### **1. Gestão de Produtos**
-- **Criação de produtos**: Adicione produtos com informações detalhadas como nome, descrição, preço, quantidade disponível e tags associadas.
-- **Atualização de produtos**: Permite modificar informações do produto, incluindo nome, descrição e estoque.
-- **Remoção de produtos**: Exclusão de produtos descontinuados ou que não devem mais estar disponíveis.
-- **Tags**: Organização dos produtos por categorias, com validação de nome único e capitalização automática (primeira letra maiúscula).
+[X] **Criação de produtos**: Adicione produtos com informações detalhadas como nome, descrição, preço, quantidade disponível e tags associadas.
+[X] **Atualização de produtos**: Permite modificar informações do produto, incluindo nome, descrição e estoque.
+[X] **Remoção de produtos**: Exclusão de produtos descontinuados ou que não devem mais estar disponíveis.
+[X] **Tags**: Organização dos produtos por categorias, com validação de nome único e capitalização automática (primeira letra maiúscula).
 
 ---
 
 ### **2. Carrinho de Compras**
-- **Adicionar itens ao carrinho**: Possibilidade de incluir produtos no carrinho e atualizar a quantidade de itens já existentes.
-- **Atualização automática do total**: Recalcula o valor total do carrinho sempre que um produto é adicionado ou removido.
-- **Remoção de itens**: Permite excluir itens do carrinho.
-- **Validação de estoque**: Garante que o cliente não compre mais do que a quantidade disponível.
+[X] **Adicionar itens ao carrinho**: Possibilidade de incluir produtos no carrinho e atualizar a quantidade de itens já existentes.
+[] **Atualização automática do total**: Recalcula o valor total do carrinho sempre que um produto é adicionado ou removido.
+[X] **Remoção de itens**: Permite excluir itens do carrinho.
+[X] **Validação de estoque**: Garante que o cliente não compre mais do que a quantidade disponível.
 
 ---
 
 ### **3. Gerenciamento de Usuários**
-- **Registro e login**: Módulo de autenticação com credenciais seguras.
-- **Perfil do cliente**: Informações básicas, histórico de compras e carrinho associado.
+[] **Registro e login**: Módulo de autenticação com credenciais seguras.
+[] **Perfil do cliente**: Informações básicas, histórico de compras e carrinho associado.
 - **Administração**: Área para gerenciar produtos e acompanhar vendas.
 
 ---
 
 ### **4. Integrações e APIs**
-- **Busca avançada**: Pesquisa de produtos por nome ou categorias (tags).
-- **Integração com sistemas de pagamento**: Suporte para múltiplos métodos, incluindo cartão de crédito, Pix e boleto bancário.
+[X] **Busca avançada**: Pesquisa de produtos por nome ou categorias (tags).
+[]  **Integração com sistemas de pagamento**: Suporte para múltiplos métodos, incluindo cartão de crédito, Pix e boleto bancário.
 
 ---
 
@@ -51,6 +51,7 @@ O **Petblinders** é um marketplace voltado para o segmento de petshops, que per
 ### **3. Otimizações no Carrinho de Compras**
 - **Compra rápida**: Função para facilitar o processo de compra, evitando múltiplos cliques.
 - **Carrinho persistente**: Salva o carrinho do cliente mesmo que ele feche o navegador.
+- **Favoritos**: Função para o usuário monitorar um produto, como uma lista de desejos.
 
 ### **4. Expansão da Logística**
 - **Cálculo automático de frete**: Integração com APIs de transportadoras e Correios.
@@ -61,10 +62,10 @@ O **Petblinders** é um marketplace voltado para o segmento de petshops, que per
 ## **Tecnologias Utilizadas**
 - **Backend**: Spring Boot (Java)
 - **Frontend**: React ou Angular (a definir)
-- **Banco de Dados**: MySQL ou PostgreSQL
+- **Banco de Dados**: MongoDB Atlas
 - **Gerenciamento de dependências**: Maven
 - **Versionamento**: Git
-- **Deploy**: AWS ou Azure
+- **Deploy**: 
 
 ---
 
