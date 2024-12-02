@@ -19,22 +19,22 @@ O **Petblinders** é um marketplace voltado para o segmento de petshops, que per
 
 ### **2. Carrinho de Compras**
 - [X] **Adicionar itens ao carrinho**: Possibilidade de incluir produtos no carrinho e atualizar a quantidade de itens já existentes.
-- [] **Atualização automática do total**: Recalcula o valor total do carrinho sempre que um produto é adicionado ou removido.
+- [ ] **Atualização automática do total**: Recalcula o valor total do carrinho sempre que um produto é adicionado ou removido.
 - [X] **Remoção de itens**: Permite excluir itens do carrinho.
 - [X] **Validação de estoque**: Garante que o cliente não compre mais do que a quantidade disponível.
 
 ---
 
 ### **3. Gerenciamento de Usuários**
-- [] **Registro e login**: Módulo de autenticação com credenciais seguras.
-- [] **Perfil do cliente**: Informações básicas, histórico de compras e carrinho associado.
+- [ ] **Registro e login**: Módulo de autenticação com credenciais seguras.
+- [ ] **Perfil do cliente**: Informações básicas, histórico de compras e carrinho associado.
 - **Administração**: Área para gerenciar produtos e acompanhar vendas.
 
 ---
 
 ### **4. Integrações e APIs**
 - [X] **Busca avançada**: Pesquisa de produtos por nome ou categorias (tags).
-- []  **Integração com sistemas de pagamento**: Suporte para múltiplos métodos, incluindo cartão de crédito, Pix e boleto bancário.
+- [ ]  **Integração com sistemas de pagamento**: Suporte para múltiplos métodos, incluindo cartão de crédito, Pix e boleto bancário.
 
 ---
 
