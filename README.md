@@ -1,4 +1,4 @@
-# Marketplace Petblinders - Petshop Online
+# Marketplace PetBlinders - Petshop Online
 
 ---
 
