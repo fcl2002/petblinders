@@ -90,7 +90,7 @@ O **Petblinders** é um marketplace voltado para o segmento de petshops, que per
 
 4. Acesse a aplicação em http://localhost:8080
 
-## Motivo das Escolhas Tecnológicas
+## Frameworks, Linguagens e Banco de dados
 
 ### Linguagem Principal: Java
 Optamos por **Java** pela sua robustez, confiabilidade e portabilidade. Com forte suporte a orientação a objetos e um ecossistema rico de frameworks, como o **Spring Boot**, facilita a construção de APIs escaláveis e manutenção do sistema no longo prazo.
