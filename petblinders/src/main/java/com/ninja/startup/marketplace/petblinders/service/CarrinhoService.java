@@ -83,8 +83,6 @@ public class CarrinhoService {
         }
 
         carrinho.setItens(itens);
-        // itens.forEach(item -> carrinho.getItens().add(item));
-        // carrinhoRepository.save(carrinho);
         carrinho.calcularTotal();
         
         return carrinhoRepository.save(carrinho);

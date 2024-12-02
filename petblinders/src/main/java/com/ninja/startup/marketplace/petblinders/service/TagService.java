@@ -6,7 +6,9 @@ import java.util.NoSuchElementException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.ninja.startup.marketplace.petblinders.dto.ItemDTO;
 import com.ninja.startup.marketplace.petblinders.dto.TagDTO;
+import com.ninja.startup.marketplace.petblinders.entity.Item;
 import com.ninja.startup.marketplace.petblinders.entity.Tag;
 import com.ninja.startup.marketplace.petblinders.repository.TagRepository;
 
@@ -60,5 +62,15 @@ public class TagService {
 		
 		tag.setNome(nomeFormatado);
 		return tagRepository.save(tag);
+	}
+
+	public List<ItemDTO> findByTag(String id){
+		Tag tag = tagRepository.findById(id).get();
+		
+		List<Item> itens = tag.getItens();
+		
+		List<ItemDTO> dto = itens.stream().map(ItemDTO::new).toList();
+		
+		return dto;
 	}
 }
