@@ -88,7 +88,7 @@ O **Petblinders** é um marketplace voltado para o segmento de petshops, que per
    mvn clean install
    mvn spring-boot:run
 
-4. Acesse a aplicação em http://localhost:8080
+4. Acesse a aplicação em http://localhost:8080/swagger-ui.html
 
 ## Frameworks, Linguagens e Banco de dados
 
